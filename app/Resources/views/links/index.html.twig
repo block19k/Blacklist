@@ -21,23 +21,13 @@
                 <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
                 <td>{{ link.link }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('links_show', { 'id': link.id }) }}">rodyti</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('links_edit', { 'id': link.id }) }}">redaguoti</a>
-                        </li>
-                    </ul>
+                            <a href="{{ path('links_show', { 'id': link.id }) }} " class = "btn btn-primary">rodyti</a>
+                            <a href="{{ path('links_edit', { 'id': link.id }) }}"  class = "btn btn-primary">redaguoti</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('links_new') }}">Sukurti naują</a>
-        </li>
-    </ul>
+            <a href="{{ path('links_new') }}" class = "btn btn-success">Sukurti naują</a>
 {% endblock %}

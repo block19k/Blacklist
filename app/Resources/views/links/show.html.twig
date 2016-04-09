@@ -3,7 +3,7 @@
 {% block body %}
     <h1>URL</h1>
 
-    <table>
+    <table class="table table-striped table-hover">
         <tbody>
             <tr>
                 <th>Pavadinimas</th>
@@ -24,17 +24,9 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('links_index') }}">Grįžti į sąrašą</a>
-        </li>
-        <li>
-            <a href="{{ path('links_edit', { 'id': link.id }) }}">Redaguoti</a>
-        </li>
-        <li>
+            <a href="{{ path('links_index') }}"  class = "btn btn-info">Grįžti į sąrašą</a>
+            <a href="{{ path('links_edit', { 'id': link.id }) }}" class = "btn btn-primary">Redaguoti</a>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Ištrinti" class = "btn btn-danger">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

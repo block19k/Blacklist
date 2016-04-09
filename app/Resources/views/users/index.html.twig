@@ -19,23 +19,14 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('users_show', { 'id': user.id }) }}">rodyti</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('users_edit', { 'id': user.id }) }}">redaguoti</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('users_show', { 'id': user.id }) }}" class = "btn btn-primary">rodyti</a>
+                    <a href="{{ path('users_edit', { 'id': user.id }) }}"class = "btn btn-primary">redaguoti</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('users_new') }}">Sukurti naują</a>
-        </li>
-    </ul>
+    <a href="{{ path('users_new') }}" class = "btn btn-success">Sukurti naują</a>
+
 {% endblock %}
