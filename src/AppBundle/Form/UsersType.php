@@ -20,9 +20,18 @@ class UsersType extends AbstractType
                     'label' => 'Vartotojo vardas',
                     'attr' => array('class' => 'form-control')
                 ))
-            ->add('password')
-            ->add('role')
-            ->add('email')
+            ->add('password', TextType::class, array(
+                    'label' => 'Slaptažodis',
+                    'attr' => array('class' => 'form-control')
+                ))
+            // ->add('roles', TextType::class, array(
+            //         'label' => 'Rolė',
+            //         'attr' => array('class' => 'form-control')
+            //     ))
+            ->add('email', TextType::class, array(
+                    'label' => 'E-paštas',
+                    'attr' => array('class' => 'form-control')
+                ))
         ;
     }
     
