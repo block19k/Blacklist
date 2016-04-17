@@ -12,13 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Users extends BaseUser
-{
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=255, nullable=false)
-     */
-    private $role;
+{    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->roles = array('ROLE_USER');
+    }
 
 
     /**
