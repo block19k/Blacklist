@@ -24,7 +24,9 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href="/users">Vartotojai</a></li>
+                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li><a href="/users">Vartotojai</a></li>
+                  {% endif %}
                 <li><a href="/links">URL</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
