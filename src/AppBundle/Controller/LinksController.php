@@ -42,7 +42,7 @@ class LinksController extends Controller
     public function newAction(Request $request)
     {
         $link = new Links();
-        $form = $this->createForm('AppBundle\Form\LinksType', $link);
+        $form = $this->createForm('AppBundle\Form\LinksRequestType', $link);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
