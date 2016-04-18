@@ -67,6 +67,10 @@ class Links
      */
     private $request_type;
 
+    public function __construct()
+    {
+        $this->active = false;
+    }
 
 
     /**

@@ -46,6 +46,9 @@ class LinksController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $link = $form->getData();
+            $user = $this->getUser();
+            $link->setUser($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($link);
             $em->flush();
