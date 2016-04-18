@@ -9,6 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class LinksType extends AbstractType
 {
@@ -38,6 +40,13 @@ class LinksType extends AbstractType
             ->add('user', EntityType::class, array(
                     'class' => 'AppBundle:Users',
                     'label' => 'Vartotojas',
+                    'attr' => array('class' => 'form-control')
+                ))
+            ->add('request_type', ChoiceType::class, array(
+                    'choices'  => array(
+                        'Įdėti į sąrašą' => 'įtraukti',
+                        'Prašyti ištrinti' => 'išimti'),
+                    'label' => 'Užklausos tipas',
                     'attr' => array('class' => 'form-control')
                 ))
         ;

@@ -10,7 +10,9 @@
                 <th>Apibūdinimas</th>
                 <th>Aktyvus</th>
                 <th>URL</th>
+                <th>Prašymo tipas</th>
                 <th>Veiksmai</th>
+
             </tr>
         </thead>
         <tbody>
@@ -20,6 +22,7 @@
                 <td>{{ link.description }}</td>
                 <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
                 <td>{{ link.link }}</td>
+                <td>{{ link.requesttype }}</td>
                 <td>
                             <a href="{{ path('links_show', { 'id': link.id }) }} " class = "btn btn-primary">rodyti</a>
                             <a href="{{ path('links_edit', { 'id': link.id }) }}"  class = "btn btn-primary">redaguoti</a>

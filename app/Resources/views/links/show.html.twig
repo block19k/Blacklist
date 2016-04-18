@@ -18,9 +18,14 @@
                 <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
+                <th>Prašymo tipas</th>
+                <td>{{ link.requesttype }}</td>
+            </tr>
+            <tr>
                 <th>URL</th>
                 <td>{{ link.link }}</td>
             </tr>
+
         </tbody>
     </table>
 

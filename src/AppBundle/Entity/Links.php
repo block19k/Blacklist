@@ -60,6 +60,14 @@ class Links
     private $user;
 
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="request_type", type="string", length=255, nullable=false)
+     */
+    private $request_type;
+
+
 
     /**
      * Set title
@@ -189,5 +197,29 @@ class Links
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set request_type
+     *
+     * @param string $request_type
+     *
+     * @return Links
+     */
+    public function setRequestType($request_type)
+    {
+        $this->request_type = $request_type;
+
+        return $this;
+    }
+
+    /**
+     * Get request_type
+     *
+     * @return string
+     */
+    public function getRequestType()
+    {
+        return $this->request_type;
     }
 }

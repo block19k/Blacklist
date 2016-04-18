@@ -23,6 +23,11 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="request_type" type="string" column="request_type" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <many-to-one field="user" target-entity="Users" fetch="LAZY">
       <join-columns>
         <join-column name="user_id" referenced-column-name="id"/>
