@@ -13,14 +13,20 @@
                 <th>Aprašymas</th>
                 <td>{{ link.description }}</td>
             </tr>
-            <tr>
-                <th>Aktyvus</th>
-                <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Prašymo tipas</th>
-                <td>{{ link.requesttype }}</td>
-            </tr>
+            {% if is_granted('ROLE_ADMIN') %}
+                <tr>
+                    <th>Aktyvus</th>
+                    <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Vartotojas</th>
+                    <td>{{ link.user }}</td>
+                </tr>
+                <tr>
+                    <th>Prašymo tipas</th>
+                    <td>{{ link.requesttype }}</td>
+                </tr>
+            {% endif %}
             <tr>
                 <th>URL</th>
                 <td>{{ link.link }}</td>
@@ -30,8 +36,10 @@
     </table>
 
             <a href="{{ path('links_index') }}"  class = "btn btn-info">Grįžti į sąrašą</a>
-            <a href="{{ path('links_edit', { 'id': link.id }) }}" class = "btn btn-primary">Redaguoti</a>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Ištrinti" class = "btn btn-danger">
-            {{ form_end(delete_form) }}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('links_edit', { 'id': link.id }) }}" class = "btn btn-primary">Redaguoti</a>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Ištrinti" class = "btn btn-danger">
+                {{ form_end(delete_form) }}
+            {% endif %}
 {% endblock %}

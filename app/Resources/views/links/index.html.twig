@@ -8,9 +8,10 @@
             <tr>
                 <th>Pavadinimas</th>
                 <th>Apibūdinimas</th>
-                <th>Aktyvus</th>
                 <th>URL</th>
                 {% if is_granted('ROLE_ADMIN') %}
+                    <th>Aktyvus</th>
+                    <th>Vartotojas</th>
                     <th>Prašymo tipas</th>
                 {% endif %}
                 <th>Veiksmai</th>
@@ -22,9 +23,11 @@
             <tr>
                 <td><a href="{{ path('links_show', { 'id': link.id }) }}">{{ link.title }}</a></td>
                 <td>{{ link.description }}</td>
-                <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
+                
                 <td>{{ link.link }}</td>
                 {% if is_granted('ROLE_ADMIN') %}
+                    <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ link.user }}</td>
                     <td>{{ link.requesttype }}</td>
                 {% endif %}
                 <td>
