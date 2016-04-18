@@ -10,7 +10,9 @@
                 <th>Apibūdinimas</th>
                 <th>Aktyvus</th>
                 <th>URL</th>
-                <th>Prašymo tipas</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Prašymo tipas</th>
+                {% endif %}
                 <th>Veiksmai</th>
 
             </tr>
@@ -22,15 +24,19 @@
                 <td>{{ link.description }}</td>
                 <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
                 <td>{{ link.link }}</td>
-                <td>{{ link.requesttype }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>{{ link.requesttype }}</td>
+                {% endif %}
                 <td>
-                            <a href="{{ path('links_show', { 'id': link.id }) }} " class = "btn btn-primary">rodyti</a>
-                            <a href="{{ path('links_edit', { 'id': link.id }) }}"  class = "btn btn-primary">redaguoti</a>
+                    <a href="{{ path('links_show', { 'id': link.id }) }} " class = "btn btn-primary">rodyti</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('links_edit', { 'id': link.id }) }}"  class = "btn btn-primary">redaguoti</a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-            <a href="{{ path('links_new') }}" class = "btn btn-success">Sukurti naują</a>
+            <a href="{{ path('links_new') }}" class = "btn btn-success">Kurti prašymą įdėti/išimti nuorodą</a>
 {% endblock %}

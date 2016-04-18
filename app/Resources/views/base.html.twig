@@ -24,7 +24,7 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                  {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="/users">Vartotojai</a></li>
                   {% endif %}
                 <li><a href="/links">URL</a></li>
