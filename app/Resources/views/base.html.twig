@@ -9,7 +9,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-<!-- čia nukopintas navigacija -->
+<!-- čia nukopinta navigacija -->
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -28,9 +28,17 @@
                 <li><a href="/links">URL</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/register">Registruotis</a></li>
-                <li><a href="/login">Prisijungti</a></li>
-                <li><a href="/logout">Atsijungti</a></li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                        <li>
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                        <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% endif %}
               </ul>
             </div>
           </div>
@@ -39,7 +47,28 @@
         <!-- turinys pasidaro fiksuoto pločio ir per centrą / jumotron- fonas -->
         <div class ="container">
             <div class="jumbotron">
-                {% block body %}{% endblock %}
+                {% block body %}
+                    {% block fos_user_content %}
+                        {% if error %}
+                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                            <label for="username">{{ 'security.login.username'|trans }}</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+                            <label for="password">{{ 'security.login.password'|trans }}</label>
+                            <input type="password" id="password" name="_password" required="required" />
+
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                        </form>
+                    {% endblock fos_user_content %}
+                {% endblock %}
             </div>
         </div>
         {% block javascripts %}{% endblock %}
