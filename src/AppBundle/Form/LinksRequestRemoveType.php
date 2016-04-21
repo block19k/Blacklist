@@ -8,10 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 // Formos texttype reikėjo klases TextType::class
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
-class LinksRequestType extends AbstractType
+class LinksRequestRemoveType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -20,19 +19,11 @@ class LinksRequestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, array(
-                    'label' => 'Pavadinimas',
-                    'attr' => array('class' => 'form-control')
-                ))
-            ->add('description', TextType::class, array(
-                    'label' => 'Aprašymas',
-                    'attr' => array('class' => 'form-control')
-                ))
-            ->add('link', TextType::class, array(
+            ->add('id', EntityType::class, array(
+                    'class' => 'AppBundle:Links',
                     'label' => 'URL',
                     'attr' => array('class' => 'form-control')
                 ))
-            ->add('save', SubmitType::class, array('label' => 'Išsaugoti', 'attr' => array( 'class' => 'btn btn-success')))
         ;
     }
     

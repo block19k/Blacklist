@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
 class LinksType extends AbstractType
@@ -29,26 +30,15 @@ class LinksType extends AbstractType
                     'label' => 'Aprašymas',
                     'attr' => array('class' => 'form-control')
                 ))
-            ->add('active', CheckboxType::class, array(
-                    'label' => 'Patvirtintas',
-                    'required' => false
-                ))
             ->add('link', TextType::class, array(
                     'label' => 'URL',
                     'attr' => array('class' => 'form-control')
                 ))
-            ->add('user', EntityType::class, array(
-                    'class' => 'AppBundle:Users',
-                    'label' => 'Vartotojas',
-                    'attr' => array('class' => 'form-control')
+            ->add('active', CheckboxType::class, array(
+                    'label' => 'Patvirtintas',
+                    'required' => false
                 ))
-            ->add('request_type', ChoiceType::class, array(
-                    'choices'  => array(
-                        'Įdėti į sąrašą' => 'įtraukti',
-                        'Prašyti ištrinti' => 'išimti'),
-                    'label' => 'Užklausos tipas',
-                    'attr' => array('class' => 'form-control')
-                ))
+            ->add('save', SubmitType::class, array('label' => 'Išsaugoti', 'attr' => array( 'class' => 'btn btn-success')))
         ;
     }
     

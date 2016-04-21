@@ -4,11 +4,16 @@
     <h1>URL Redagavimas</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Išsaugoti"  class = "btn btn-success" />
+        {{ form_row(edit_form.title) }}
+        {{ form_row(edit_form.description) }}
+        {% if edit_form.vars.value.blocked %}
+        	{{ form_row(edit_form.link, { 'attr':{'disabled':'disabled'} }) }}
+        	{{ form_row(edit_form.active, { 'attr':{'disabled':'disabled'} }) }}
+        {% else %}
+        	{{ form_row(edit_form.link) }}
+        	{{ form_row(edit_form.active) }}
+        {% endif %}
     {{ form_end(edit_form) }}
-            <a href="{{ path('links_index') }}" class = "btn btn-info">Grįžti į sąrašą</a>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Ištrinti" class = "btn btn-danger">
-            {{ form_end(delete_form) }}
+    <a href="{{ path('links_index') }}" class = "btn btn-info">Grįžti į sąrašą</a>
+            
 {% endblock %}

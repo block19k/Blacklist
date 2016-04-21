@@ -67,11 +67,28 @@ class Links
      */
     private $request_type;
 
-    public function __construct()
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="blocked", type="boolean", nullable=false)
+    */
+    private $blocked;
+
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="actionrequired", type="boolean", nullable=false)
+    */
+    private $actionrequired;
+
+    
+    public function __construct($requestType)
     {
         $this->active = false;
+        $this->blocked = false;
+        $this->actionrequired = true;
+        $this->request_type = $requestType;
     }
-
 
     /**
      * Set title
@@ -217,6 +234,8 @@ class Links
         return $this;
     }
 
+    
+
     /**
      * Get request_type
      *
@@ -226,4 +245,52 @@ class Links
     {
         return $this->request_type;
     }
+
+    /**
+     * Get blocked
+     *
+     * @return string
+     */
+    public function getBlocked()
+    {
+        return $this->blocked;
+    }
+
+    /**
+     * Set blocked
+     *
+     * @param string $blocked
+     *
+     * @return Links
+     */
+    public function setBlocked($blocked)
+    {
+        $this->blocked = $blocked;
+
+        return $this;
+    }
+
+    /**
+     * Get actionrequired
+     *
+     * @return string
+     */
+    public function getActionrequired()
+    {
+        return $this->actionrequired;
+    }
+    /**
+     * Set actionrequired
+     *
+     * @param string $actionrequired
+     *
+     * @return Links
+     */
+    public function setActionrequired($actionrequired)
+    {
+        $this->actionrequired = $actionrequired;
+
+        return $this;
+    }
+
 }

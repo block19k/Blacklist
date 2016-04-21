@@ -28,6 +28,8 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="blocked" type="boolean" column="blocked" nullable="false"/>
+    <field name="actionrequired" type="boolean" column="actionrequired" nullable="false"/>
     <many-to-one field="user" target-entity="Users" fetch="LAZY">
       <join-columns>
         <join-column name="user_id" referenced-column-name="id"/>

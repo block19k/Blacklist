@@ -18,4 +18,17 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
         ]);
     }
+    /**
+     * @Route("/requestCount", name="requestCount")
+     * 
+     */
+    public function getRequestCount(){
+        $em = $this->getDoctrine()->getManager();
+        $links = $em->getRepository('AppBundle:Links')->findBy(
+            array(
+                'actionrequired' => true
+            )
+        );
+        return count($links);
+    }
 }

@@ -9,40 +9,49 @@
                 <th>Pavadinimas</th>
                 <th>Apibūdinimas</th>
                 <th>URL</th>
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if requests or is_granted('ROLE_ADMIN') %}
                     <th>Aktyvus</th>
                     <th>Vartotojas</th>
-                    <th>Prašymo tipas</th>
+                    {% if requests %}
+                        <th>Prašymo tipas</th>
+                    {% endif %}
+                    <th>Veiksmai</th>
+                    
                 {% endif %}
-                <th>Veiksmai</th>
 
             </tr>
         </thead>
         <tbody>
         {% for link in links %}
-            {% if link.active == 'Yes' or is_granted('ROLE_ADMIN') %}
+            
                 <tr>
                     <td><a href="{{ path('links_show', { 'id': link.id }) }}">{{ link.title }}</a></td>
                     <td>{{ link.description }}</td>
                     
                     <td>{{ link.link }}</td>
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if requests or is_granted('ROLE_ADMIN') %}
                         <td>{% if link.active %}Yes{% else %}No{% endif %}</td>
                         <td>{{ link.user }}</td>
-                        <td>{{ link.requesttype }}</td>
+                        {% if requests  %}
+                            <td>{{ link.requesttype }}</td>
+                        {% endif %}
                     {% endif %}
                     <td>
-                        <a href="{{ path('links_show', { 'id': link.id }) }} " class = "btn btn-primary">rodyti</a>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('links_edit', { 'id': link.id }) }}"  class = "btn btn-primary">redaguoti</a>
+                        {% if requests or is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('links_edit', { 'id': link.id }) }}"  class = "btn btn-info">redaguoti</a>
+                            {% if requests  %}
+                                <a href="{{ path('links_accept_requests', { 'id': link.id }) }}"  class = "btn btn-success">Priimti</a>
+                                <a href="{{ path('links_refuse_requests', { 'id': link.id }) }}"  class = "btn btn-danger">Atmesti</a>
+                            {% endif %}
                         {% endif %}
                     </td>
                 </tr>
-            {% endif %}
+            
                 
         {% endfor %}
         </tbody>
     </table>
 
-            <a href="{{ path('links_new') }}" class = "btn btn-success">Kurti prašymą įdėti/išimti nuorodą</a>
+            <a href="{{ path('links_new') }}" class = "btn btn-success">Kurti prašymą įdėti nuorodą</a>
+            <a href="{{ path('links_request_remove') }}" class = "btn btn-danger">Kurti prašymą išimti nuorodą</a>
 {% endblock %}
