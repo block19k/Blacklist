@@ -10,6 +10,7 @@ Run these commands to install application:
 
 ```
 git clone https://github.com/kaunas163/Blacklist.git
+cd Blacklist
 composer install
 ```
 
